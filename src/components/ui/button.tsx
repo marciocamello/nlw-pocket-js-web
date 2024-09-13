@@ -9,6 +9,8 @@ const button = tv({
       primary:
         'bg-violet-500 text-violet-50 hover:bg-violet-600 ring-violet-500',
       secondary: 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800 ring-zinc-900',
+      outline: 'bg-transparent text-zinc-400 border border-zinc-400',
+      link: 'bg-transparent text-zinc-400 underline',
     },
 
     size: {

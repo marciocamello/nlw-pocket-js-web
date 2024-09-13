@@ -1,9 +1,20 @@
 import dayjs from 'dayjs'
 import { CheckCircle2 } from 'lucide-react'
+import { deleteGoalCompletion } from '../http/delete-goal-completion'
+import { useQueryClient } from '@tanstack/react-query'
+import { Button } from './ui/button'
 
 export function GoalPerDay({ date, goals }: GoalPerDayProps) {
+  const queryClient = useQueryClient()
   const weekDay = dayjs(date).format('dddd')
   const formatedDate = dayjs(date).format('D[ de ]MMMM')
+
+  async function handleDeleteGoal(goaldId: string) {
+    await deleteGoalCompletion(goaldId)
+
+    queryClient.invalidateQueries({ queryKey: ['summary'] })
+    queryClient.invalidateQueries({ queryKey: ['pending-goals'] })
+  }
 
   return (
     <div className="flex flex-col gap-4">
@@ -22,9 +33,15 @@ export function GoalPerDay({ date, goals }: GoalPerDayProps) {
                 Você completou "
                 <span className="text-zinc-100">{goal.title}</span>" às{' '}
                 <span className="text-zinc-100">{time}</span>
-                <a href="/" title="desfazer" className="px-2 hover:underline">
+                {/* <Button
+                  type="button"
+                  title="desfazer"
+                  variant="link"
+                  className="hover:underline float-end p-0 px-2"
+                  onClick={() => handleDeleteGoal(goal.id)}
+                >
                   Desfazer
-                </a>
+                </Button> */}
               </span>
             </li>
           )

@@ -17,6 +17,11 @@ interface GoalPerDayProps {
   goals: GoalsPerDay[]
 }
 
+type GoalRequest = {
+  title: string
+  desiredWeeklyFrequency: number
+}
+
 interface PendingGoal {
   id: string
   title: string

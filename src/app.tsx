@@ -10,7 +10,7 @@ export function App() {
   return (
     <Dialog>
       {summary?.total && summary.total > 0 ? <Summary /> : <EmptyGoals />}
-      {/* <CreateGoal />  */}
+      <CreateGoal />
     </Dialog>
   )
 }
